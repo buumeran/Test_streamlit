@@ -1,25 +1,26 @@
 import streamlit as st
+import sys
 import spreadsheet as sp
-print(1)
+sys.stdout.write("1\n")
 if "check" not in st.session_state:
-    print(2)
+    sys.stdout.write("2\n")
     report = sp.createNewDayReport()
     st.session_state.check = report
 
-print(3)
+sys.stdout.write("3\n")
 sheet = st.session_state.check
 
-print(4)
+sys.stdout.write("4\n")
 
-st.title('日報アプリ')
+st.title('日報アプリ(sysいれた)')
 
-print(5)
+sys.stdout.write("5\n")
 
 if st.button('出勤'):
     sp.checkin(sheet)
-    print(6)
+    sys.stdout.write("6\n")
 
 
 if st.button('退勤'):
     sp.checkout(sheet)
-    print(7)
+    sys.stdout.write("7\n")
