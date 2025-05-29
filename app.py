@@ -1,20 +1,19 @@
 import streamlit as st
-from PIL import Image
-import numpy as np
-import cv2
+import spreadsheet as sp
 
-st.title("Image Converter")
-  
-uploaded_file = st.file_uploader('Upload your image file.')
-  
-if uploaded_file is not None:
-    image = Image.open(uploaded_file)
-    image = np.array(image)
+if "check" not in st.session_state:
+    report = sp.createNewDayReport()
+    st.session_state.check = report
 
-    st.subheader('Uploaded image')
-    st.image(image)
+sheet = st.session_state.check
 
-    gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-    st.subheader('Converted image')
-    st.image(gray_image)
+
+st.title('日報アプリ')
+
+if st.button('出勤'):
+    sp.checkin(sheet)
+
+
+if st.button('退勤'):
+    sp.checkout(sheet)
