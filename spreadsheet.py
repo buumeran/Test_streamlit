@@ -12,7 +12,7 @@ scopes = [
 ]
 
 credentials = ServiceAccountCredentials.from_json_keyfile_name(
-    'test.json',
+    SETTING,
     scopes=scopes
 )
 
