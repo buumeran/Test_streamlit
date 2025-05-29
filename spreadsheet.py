@@ -1,9 +1,10 @@
 import gspread
+import streamlit as st
 from gspread_formatting import *
 from datetime import datetime, timedelta
 from oauth2client.service_account import ServiceAccountCredentials
 
-folder_id = FOLDER_ID
+folder_id = st.secrets["FOLDER_ID"]
 file_name = 'GC_test_by_gspread'
 
 scopes = [
@@ -12,7 +13,7 @@ scopes = [
 ]
 
 credentials = ServiceAccountCredentials.from_json_keyfile_name(
-    SETTING,
+    st.secrets["SETTING"],
     scopes=scopes
 )
 
